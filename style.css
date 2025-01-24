@@ -10,8 +10,41 @@ body {
   padding: 40px;
 }
 
+/*MAIN LAYOUT*/
+
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .header {
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fact-form {
+  background-color: #a0aec0;
+  margin-bottom: 40px;
+  padding: 16px 40px;
+  text-align: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 250 px 1fr;
+  gap: 48px;
+}
+
+/*ELEMENTS*/
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 16px;
 }
 
 h1 {
@@ -19,12 +52,7 @@ h1 {
   text-transform: uppercase;
   font-family: "Coiny", sans-serif;
   color: #f7fafc;
-}
-
-.fact-form {
-  background-color: #a0aec0;
-  margin-bottom: 40px;
-  padding: 16px 40px;
+  margin-top: 6px;
 }
 
 .fact {
@@ -34,6 +62,11 @@ h1 {
   background-color: #a0aec0;
   margin-bottom: 16px;
   padding: 16px 24px;
+  letter-spacing: -1px;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .tag {
@@ -41,6 +74,13 @@ h1 {
   font-size: 14px;
   font-family: "Coiny", sans-serif;
   color: #f7fafc;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.vote-buttons {
+  margin-left: auto;
 }
 
 ul {
