@@ -7,15 +7,15 @@
 body {
   background-color: #718096;
   font-family: "Sono", sans-serif;
+  color: #f7fafc;
   padding: 40px;
 }
 
 /*MAIN LAYOUT*/
 
 .container {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .header {
@@ -26,7 +26,7 @@ body {
 }
 
 .fact-form {
-  background-color: #a0aec0;
+  background-color: #4a5568;
   margin-bottom: 40px;
   padding: 16px 40px;
   text-align: center;
@@ -34,7 +34,7 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: 250 px 1fr;
+  grid-template-columns: 250px 1fr;
   gap: 48px;
 }
 
@@ -47,11 +47,15 @@ body {
   gap: 16px;
 }
 
+.logo img {
+  width: 68px;
+  height: 68px;
+}
+
 h1 {
   font-size: 42px;
   text-transform: uppercase;
   font-family: "Coiny", sans-serif;
-  color: #f7fafc;
   margin-top: 6px;
 }
 
@@ -59,7 +63,7 @@ h1 {
   font-size: 20px;
   line-height: 1.4;
   color: #f7fafc;
-  background-color: #a0aec0;
+  background-color: #4a5568;
   margin-bottom: 16px;
   padding: 16px 24px;
   letter-spacing: -1px;
@@ -73,7 +77,6 @@ h1 {
   text-transform: uppercase;
   font-size: 14px;
   font-family: "Coiny", sans-serif;
-  color: #f7fafc;
   padding-top: 3px;
   padding-left: 10px;
   padding-right: 10px;
@@ -85,4 +88,37 @@ h1 {
 
 ul {
   list-style: none;
+}
+
+.source:link,
+.source:visited {
+  color: #cbd5e0;
+  text-decoration: none;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.source:hover,
+source:active {
+  color: #3b82f6;
+}
+
+.btn {
+  border: none;
+  font-family: "Coiny", sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 17px;
+  padding: 16px 0 13px;
+  background-image: linear-gradient(135deg, #3b82f6, #db2777, #14b8a6, #8b5cf6);
+  color: inherit;
+}
+
+.btn-large {
+  font-size: 20px;
+  padding: 20px 32px 17px;
+}
+
+.btn-all-categories {
+  margin-bottom: 16px;
 }

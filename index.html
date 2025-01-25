@@ -17,16 +17,11 @@
     <div class="container">
       <header class="header">
         <div class="logo">
-          <img
-            src="logo.png"
-            height="68"
-            width="68"
-            alt="Today I Learned Logo"
-          />
+          <img src="logo.png" alt="Today I Learned Logo" />
           <h1>Today I Learned!</h1>
         </div>
 
-        <button>Share a fact</button>
+        <button class="btn btn-large">Share a fact</button>
       </header>
 
       <form class="fact-form">
@@ -39,15 +34,15 @@
           <option value="science">Science</option>
           <option value="finances">Finances</option>
         </select>
-        <button>Post</button>
+        <button class="btn btn-large">Post</button>
       </form>
 
       <main class="main">
         <aside>
           <ul>
-            <li><button>All</button></li>
-            <li><button>Technology</button></li>
-            <li><button>Science</button></li>
+            <li><button class="btn btn-all-categories">All</button></li>
+            <li><button class="btn">Technology</button></li>
+            <li><button class="btn">Science</button></li>
           </ul>
         </aside>
 
@@ -56,7 +51,10 @@
             <li class="fact">
               <p>
                 React is being developed by Meta (formerly facebook)
-                <a href="https://opensource.fb.com/" target="_blank"
+                <a
+                  class="source"
+                  href="https://opensource.fb.com/"
+                  target="_blank"
                   >(Source)</a
                 >
               </p>
@@ -75,6 +73,7 @@
                 their fathers spent with them. In 1982, 43% of fathers had never
                 changed a diaper. Today, that number is down to 3%
                 <a
+                  class="source"
                   href="https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids"
                   target="_blank"
                   >(Source)</a
