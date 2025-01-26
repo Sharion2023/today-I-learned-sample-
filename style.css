@@ -59,6 +59,10 @@ h1 {
   margin-top: 6px;
 }
 
+.category {
+  margin-bottom: 16px;
+}
+
 .fact {
   font-size: 20px;
   line-height: 1.4;
@@ -67,7 +71,6 @@ h1 {
   margin-bottom: 16px;
   padding: 16px 24px;
   letter-spacing: -1px;
-
   display: flex;
   align-items: center;
   gap: 24px;
@@ -80,10 +83,33 @@ h1 {
   padding-top: 3px;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .vote-buttons {
   margin-left: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  gap: 8px;
+}
+
+.vote-buttons button {
+  border: none;
+  background-color: #a0aec0;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.vote-buttons button:hover {
+  background-color: #718096;
 }
 
 ul {
@@ -112,6 +138,13 @@ source:active {
   padding: 16px 0 13px;
   background-image: linear-gradient(135deg, #3b82f6, #db2777, #14b8a6, #8b5cf6);
   color: inherit;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(110%) rotate(-2deg);
+  cursor: pointer;
 }
 
 .btn-large {
@@ -121,4 +154,10 @@ source:active {
 
 .btn-all-categories {
   margin-bottom: 16px;
+  width: 100%;
+}
+
+.btn-category {
+  width: 100%;
+  background-image: none;
 }
