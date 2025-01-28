@@ -8,7 +8,7 @@ body {
   background-color: #718096;
   font-family: "Sono", sans-serif;
   color: #f7fafc;
-  padding: 40px;
+  padding: 48px 64px;
 }
 
 /*MAIN LAYOUT*/
@@ -25,17 +25,16 @@ body {
   justify-content: space-between;
 }
 
-.fact-form {
-  background-color: #4a5568;
-  margin-bottom: 40px;
-  padding: 16px 40px;
-  text-align: center;
-}
-
 .main {
   display: grid;
   grid-template-columns: 250px 1fr;
   gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
 }
 
 /*ELEMENTS*/
@@ -74,6 +73,15 @@ h1 {
   display: flex;
   align-items: center;
   gap: 24px;
+  border-radius: 16px;
+}
+
+@media (max-width: 1200px) {
+  .fact {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
 }
 
 .tag {
@@ -160,4 +168,57 @@ source:active {
 .btn-category {
   width: 100%;
   background-image: none;
+}
+
+/*FORM*/
+.fact-form {
+  background-color: #4a5568;
+  margin-bottom: 40px;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 16px;
+}
+
+.fact-form input,
+.fact-form select {
+  width: 220px;
+  background-color: #718096;
+  border: none;
+  border-radius: 50px;
+  padding: 16px;
+  font-size: 18px;
+  color: inherit;
+  font-family: inherit;
+}
+
+.fact-form input::placeholder {
+  color: #a0aec0;
+}
+
+.fact-form :first-child {
+  flex-grow: 1;
+}
+
+.fact-form span {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 32px 48px;
+  }
+}
+
+.fact-form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.fact-form input,
+.fact-form select {
+  width: auto;
 }
