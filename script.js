@@ -40,6 +40,28 @@ const factsList = document.querySelector(".facts-list");
 //Create DOM elements: Render facts in list
 factsList.innerHTML = "";
 
+//Load data from Supabase
+loadFacts();
+
+async function loadFacts(params) {
+  const res = await fetch(
+    "https://hotsyvamnptnayhthhdq.supabase.co/rest/v1/Facts",
+    {
+      headers: {
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvdHN5dmFtbnB0bmF5aHRoaGRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgwOTYyMzUsImV4cCI6MjA1MzY3MjIzNX0.wNBk_A6cbeGU1JfE9LctZhCh2jQ7Br8cdSMoZ5_vRJo",
+        authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvdHN5dmFtbnB0bmF5aHRoaGRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgwOTYyMzUsImV4cCI6MjA1MzY3MjIzNX0.wNBk_A6cbeGU1JfE9LctZhCh2jQ7Br8cdSMoZ5_vRJo",
+      },
+    }
+  );
+
+  const data = await res.json();
+  createFactsList(data);
+}
+
+const htmlArr = initialFacts.map((fact) => `<`);
+
 //Toggle form visibility
 btn_open.addEventListener("click", function () {
   if (form.classList.contains("hidden")) {
