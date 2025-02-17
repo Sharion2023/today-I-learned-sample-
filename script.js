@@ -57,10 +57,31 @@ async function loadFacts(params) {
   );
 
   const data = await res.json();
-  createFactsList(data);
+  console.log(data);
+  const filterData = data.filter((fact) => fact.category === "society");
+
+  createFactsList(filterData);
 }
 
-const htmlArr = initialFacts.map((fact) => `<`);
+function createFactsList(dataArray) {
+  const htmlArr = dataArray.map(
+    (fact) => `<li class="fact">
+              <p>
+                ${fact.text}
+                <a
+                  class="source"
+                  href="${fact.source}"
+                  target="_blank"
+                  >(Source)</a>
+              </p>
+              <span class="tag" style="background-color: #3b82f6"
+                >${fact.category}</span>
+                </li>`
+  );
+
+  const html = htmlArr.join("");
+  factsList.insertAdjacentHTML("afterbegin", html);
+}
 
 //Toggle form visibility
 btn_open.addEventListener("click", function () {
@@ -72,6 +93,8 @@ btn_open.addEventListener("click", function () {
     btn_open.textContent = "Share a fact";
   }
 });
+
+console.log([1, 62, -55, 11].filter((el) => el < 10));
 
 /*
 
