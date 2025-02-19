@@ -51,31 +51,37 @@ export default function FactList() {
     <section>
       <ul className="facts-list">
         {facts.map((fact) => (
-          <li key={fact.id} className="fact">
-            <p>
-              {fact.text}
-              <a className="source" href={fact.source} target="_blank">
-                (Source)
-              </a>
-            </p>
-            <span
-              className="tag"
-              style={{
-                backgroundColor: CATEGORIES.find(
-                  (cat) => cat.name === fact.category
-                ).color,
-              }}
-            >
-              {fact.category}
-            </span>
-            <div className="vote-buttons">
-              <button>👍🏾{fact.votesInteresting}</button>
-              <button>🤯 {fact.votesMindblowing}</button>
-              <button>⛔️ {fact.votesFalse}</button>
-            </div>
-          </li>
+          <Fact key={fact.id} props={fact} />
         ))}
       </ul>
     </section>
+  );
+}
+
+function Fact({ props }) {
+  console.log(props);
+  return (
+    <li className="fact">
+      <p>
+        {props.text}
+        <a className="source" href={props.source} target="_blank">
+          (Source)
+        </a>
+      </p>
+      <span
+        className="tag"
+        style={{
+          backgroundColor: CATEGORIES.find((cat) => cat.name === props.category)
+            .color,
+        }}
+      >
+        {props.category}
+      </span>
+      <div className="vote-buttons">
+        <button>👍🏾{props.votesInteresting}</button>
+        <button>🤯 {props.votesMindblowing}</button>
+        <button>⛔️ {props.votesFalse}</button>
+      </div>
+    </li>
   );
 }
