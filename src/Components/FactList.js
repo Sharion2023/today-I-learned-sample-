@@ -8,7 +8,6 @@ const CATEGORIES = [
   { name: "history", color: "#f97316" },
   { name: "news", color: "#8b5cf6" },
 ];
-
 const initialFacts = [
   {
     id: 1,
