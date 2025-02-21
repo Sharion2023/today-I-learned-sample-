@@ -3,13 +3,10 @@ import React from "react";
 import NewFactForm from "./NewFactForm";
 import { useEffect } from "react";
 
-export default function Header(props) {
+export default function Header({ showForm, setShowForm }) {
   useEffect(() => {
     console.log("Current state:", showForm);
   });
-
-  const showForm = props.showForm;
-  const setShowForm = props.setShowForm;
 
   return (
     <>
