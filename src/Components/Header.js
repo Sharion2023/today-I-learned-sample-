@@ -3,12 +3,13 @@ import React from "react";
 import NewFactForm from "./NewFactForm";
 import { useEffect } from "react";
 
-export default function Header() {
-  const [showForm, setShowForm] = useState(false);
-
+export default function Header(props) {
   useEffect(() => {
     console.log("Current state:", showForm);
   });
+
+  const showForm = props.showForm;
+  const setShowForm = props.setShowForm;
 
   return (
     <>
@@ -27,7 +28,6 @@ export default function Header() {
           {showForm ? "Close" : "Share A Fact!"}
         </button>
       </header>
-      {showForm ? <NewFactForm /> : null}
     </>
   );
 
