@@ -1,15 +1,49 @@
 import { useState } from "react";
 import { CATEGORIES } from "./CategoryFilter";
 
+function isValidHttpUrl(string) {
+  let url;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
 export default function NewFactForm() {
   const [text, setText] = useState("");
-  const [sourceText, setSourceText] = useState("");
+  const [sourceText, setSourceText] = useState("http://example.com");
   const [category, setCategory] = useState("");
   const textLength = text.length;
 
   function handleSubmit(e) {
+    //1. prevent browser reload
     e.preventDefault();
-    console.log(text, sourceText, category);
+    //console.log(text, sourceText, category);
+
+    //2. Check if data is valid. If so, create new fact.
+    if (text && isValidHttpUrl(sourceText) && category && textLength <= 200)
+      console.log("got a new fact!");
+    {
+      //3. Create new fact object
+      const newFact = {
+        id: Math.round(Math.random() * 1000000),
+        text,
+        sourceText,
+        category,
+        votesInteresting: 0,
+        votesMindblowing: 0,
+        votesFalse: 0,
+        createdIn: new Date().getFullYear(),
+      };
+      console.log(newFact);
+      //4. Add new fact to UI: add fact to state
+      //5. Reset input fields
+      //6. Close the form
+    }
   }
 
   return (
@@ -20,7 +54,7 @@ export default function NewFactForm() {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <span>{200 - text.length}</span>
+      <span>{200 - textLength}</span>
       <input
         type="text"
         placeholder="Trustworthy source..."
