@@ -13,7 +13,7 @@ function isValidHttpUrl(string) {
   return url.protocol === "http:" || url.protocol === "https:";
 }
 
-export default function NewFactForm() {
+export default function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState("");
   const [sourceText, setSourceText] = useState("http://example.com");
   const [category, setCategory] = useState("");
@@ -41,8 +41,13 @@ export default function NewFactForm() {
       };
       console.log(newFact);
       //4. Add new fact to UI: add fact to state
+      setFacts((facts) => [newFact, ...facts]);
       //5. Reset input fields
+      setText("");
+      setSourceText("");
+      setCategory("");
       //6. Close the form
+      setShowForm(false);
     }
   }
 
