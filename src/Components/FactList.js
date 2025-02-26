@@ -17,7 +17,7 @@ export default function FactList({ facts }) {
     <section>
       <ul className="facts-list">
         {facts.map((fact) => (
-          <Fact key={fact.id} props={fact} />
+          <Fact key={fact.id} fact={fact} />
         ))}
       </ul>
     </section>
@@ -25,29 +25,29 @@ export default function FactList({ facts }) {
 }
 
 //pass info from above
-function Fact({ props }) {
-  console.log(props);
+function Fact({ fact }) {
+  console.log(fact);
   return (
     <li className="fact">
       <p>
-        {props.text}
-        <a className="source" href={props.source} target="_blank">
+        {fact.text}
+        <a className="source" href={fact.source} target="_blank">
           (Source)
         </a>
       </p>
       <span
         className="tag"
         style={{
-          backgroundColor: CATEGORIES.find((cat) => cat.name === props.category)
+          backgroundColor: CATEGORIES.find((cat) => cat.name === fact.category)
             .color,
         }}
       >
-        {props.category}
+        {fact.category}
       </span>
       <div className="vote-buttons">
-        <button>👍🏾{props.votesInteresting}</button>
-        <button>🤯 {props.votesMindblowing}</button>
-        <button>⛔️ {props.votesFalse}</button>
+        <button>👍🏾{fact.votesInteresting}</button>
+        <button>🤯 {fact.votesMindblowing}</button>
+        <button>⛔️ {fact.votesFalse}</button>
       </div>
     </li>
   );
