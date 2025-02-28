@@ -1,12 +1,14 @@
-import { useState } from "react";
+//import { useState } from "react";
 import React from "react";
-import NewFactForm from "./NewFactForm";
-import { useEffect } from "react";
+//import NewFactForm from "./NewFactForm";
+//import { useEffect } from "react";
 
 export default function Header({ showForm, setShowForm }) {
-  useEffect(() => {
+  /* 
+ Testing the state toggle function
+ useEffect(() => {
     console.log("Current state:", showForm);
-  });
+  });*/
 
   return (
     <>
@@ -27,6 +29,4 @@ export default function Header({ showForm, setShowForm }) {
       </header>
     </>
   );
-
-  console.log("here");
 }

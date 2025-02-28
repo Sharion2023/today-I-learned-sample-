@@ -26,7 +26,6 @@ export default function FactList({ facts }) {
 
 //pass info from above
 function Fact({ fact }) {
-  console.log(fact);
   return (
     <li className="fact">
       <p>

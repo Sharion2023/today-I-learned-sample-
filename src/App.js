@@ -43,13 +43,20 @@ const initialFacts = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState(initialFacts);
+  const [facts, setFacts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
+  //ensure that facts load at initilization, but not with every state change
+  //useEffect lets you synchronize a component with an external system
   useEffect(function () {
+    //waits for Supabase to load facts
     async function getFacts() {
+      setIsLoading(true);
       const { data: facts, error } = await supabase.from("Facts").select("*");
-      console.log(facts);
+      setFacts(facts);
+      setIsLoading(false);
     }
+    //function call to load facts
     getFacts();
   }, []);
 
@@ -62,10 +69,14 @@ function App() {
 
       <main className="main">
         <CategoryFilter />
-        <FactList facts={facts} />
+        {isLoading ? <Loader /> : <FactList facts={facts} />}
       </main>
     </>
   );
+}
+
+function Loader() {
+  return <p>Loading...</p>;
 }
 
 export default App;
