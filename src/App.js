@@ -45,20 +45,41 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState("all");
 
   //ensure that facts load at initilization, but not with every state change
   //useEffect lets you synchronize a component with an external system
-  useEffect(function () {
-    //waits for Supabase to load facts
-    async function getFacts() {
-      setIsLoading(true);
-      const { data: facts, error } = await supabase.from("Facts").select("*");
-      setFacts(facts);
-      setIsLoading(false);
-    }
-    //function call to load facts
-    getFacts();
-  }, []);
+  useEffect(
+    function () {
+      //waits for Supabase to load facts
+      async function getFacts() {
+        setIsLoading(true);
+
+        //beginning to build query (copied from Supabase)
+        let query = supabase.from("Facts").select("*");
+
+        //checking for current category before request
+        if (currentCategory !== "all") {
+          query = query.eq("category", currentCategory);
+        }
+
+        const { data: facts, error } = await query
+          .order("votesInteresting", { ascending: false })
+          .limit(1000);
+
+        if (!error) {
+          setFacts(facts);
+        } else {
+          alert("There was a problem getting data");
+        }
+        //reset isLoading function
+        setIsLoading(false);
+      }
+      //function call to load facts
+      getFacts();
+    },
+    [currentCategory]
+  );
 
   return (
     <>
@@ -68,7 +89,7 @@ function App() {
       ) : null}
 
       <main className="main">
-        <CategoryFilter />
+        <CategoryFilter setCurrentCategory={setCurrentCategory} />
         {isLoading ? <Loader /> : <FactList facts={facts} />}
       </main>
     </>
@@ -76,7 +97,7 @@ function App() {
 }
 
 function Loader() {
-  return <p>Loading...</p>;
+  return <p className="message">Loading...</p>;
 }
 
 export default App;
