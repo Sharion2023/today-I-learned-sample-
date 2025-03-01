@@ -11,7 +11,9 @@ const CATEGORIES = [
 ];
 
 export default function FactList({ facts }) {
-  //  TEMPORARY WITH FAKE DATA
+  if (facts.length === 0) {
+    return <p className="message">There are not facts here yet!</p>;
+  }
 
   return (
     <section>

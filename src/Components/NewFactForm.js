@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CATEGORIES } from "./CategoryFilter";
+import supabase from "../supabase";
 
 function isValidHttpUrl(string) {
   let url;
@@ -19,7 +20,7 @@ export default function NewFactForm({ setFacts, setShowForm }) {
   const [category, setCategory] = useState("");
   const textLength = text.length;
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     //1. prevent browser reload
     e.preventDefault();
     //console.log(text, sourceText, category);
@@ -29,19 +30,26 @@ export default function NewFactForm({ setFacts, setShowForm }) {
       console.log("got a new fact!");
     {
       //3. Create new fact object
-      const newFact = {
-        id: Math.round(Math.random() * 1000000),
-        text,
-        sourceText,
-        category,
-        votesInteresting: 0,
-        votesMindblowing: 0,
-        votesFalse: 0,
-        createdIn: new Date().getFullYear(),
-      };
+      // const newFact = {
+      //   id: Math.round(Math.random() * 1000000),
+      //   text,
+      //   sourceText,
+      //   category,
+      //   votesInteresting: 0,
+      //   votesMindblowing: 0,
+      //   votesFalse: 0,
+      //   createdIn: new Date().getFullYear(),
+      // };
+
+      //3. Create new fact, add it to Supabase and retrieve it to UI
+      const { data: newFact, error } = await supabase
+        .from("Facts")
+        .insert([{ text, source: sourceText, category }])
+        .select();
       console.log(newFact);
+
       //4. Add new fact to UI: add fact to state
-      setFacts((facts) => [newFact, ...facts]);
+      //setFacts((facts) => [newFact[0], ...facts]);
       //5. Reset input fields
       setText("");
       setSourceText("");
