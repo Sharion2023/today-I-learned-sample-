@@ -18,6 +18,7 @@ export default function NewFactForm({ setFacts, setShowForm }) {
   const [text, setText] = useState("");
   const [sourceText, setSourceText] = useState("http://example.com");
   const [category, setCategory] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const textLength = text.length;
 
   async function handleSubmit(e) {
@@ -42,14 +43,17 @@ export default function NewFactForm({ setFacts, setShowForm }) {
       // };
 
       //3. Create new fact, add it to Supabase and retrieve it to UI
+      setIsUploading(true);
       const { data: newFact, error } = await supabase
         .from("Facts")
+        //source is column heading, sourceText is the variable name I used in the app
         .insert([{ text, source: sourceText, category }])
         .select();
       console.log(newFact);
+      setIsUploading(false);
 
       //4. Add new fact to UI: add fact to state
-      //setFacts((facts) => [newFact[0], ...facts]);
+      if (!error) setFacts((facts) => [newFact[0], ...facts]);
       //5. Reset input fields
       setText("");
       setSourceText("");
@@ -66,6 +70,7 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         placeholder="Share a fact with the world..."
         value={text}
         onChange={(e) => setText(e.target.value)}
+        disabled={isUploading}
       />
       <span>{200 - textLength}</span>
       <input
@@ -73,8 +78,13 @@ export default function NewFactForm({ setFacts, setShowForm }) {
         placeholder="Trustworthy source..."
         value={sourceText}
         onChange={(e) => setSourceText(e.target.value)}
+        disabled={isUploading}
       />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        disabled={isUploading}
+      >
         <option value="">Choose category</option>
         {CATEGORIES.map((cat) => (
           <option key={cat.name} value={cat.name}>
@@ -82,7 +92,9 @@ export default function NewFactForm({ setFacts, setShowForm }) {
           </option>
         ))}
       </select>
-      <button className="btn btn-large">Post</button>
+      <button className="btn btn-large" disabled={isUploading}>
+        Post
+      </button>
     </form>
   );
 }
